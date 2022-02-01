@@ -1,0 +1,32 @@
+{
+  "users" : [
+    {
+      "name" : "Alex",
+      "type" : "admin",
+      "age" : 32,
+      "social" : {
+        "vkontakte" : "https://vk.com/id=542627",
+        "facebook" : "https://fb.com/id=849562"
+      }
+    },
+    {
+      "name" : "Karl Marks",
+      "type" : "politician",
+      "age" : 54,
+      "social" : {
+        "vkontakte" : "https://vk.com/id=2222",
+        "facebook" : "https://fb.com/id=22222"
+      }
+    },
+    {
+      "name" : "James Bond",
+      "type" : "agent",
+      "age" : 46,
+      "social" : {
+        "vkontakte" : "https://vk.com/id=333333",
+        "facebook" : "https://fb.com/id=33333"
+      }
+    }
+
+  ]
+}
