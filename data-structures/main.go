@@ -22,6 +22,13 @@ func PrintStudent(std Student) {
 	fmt.Println("Age: ", std.age)
 }
 
+//stuct with anonymous properties
+type Human struct {
+	firstName string
+	string
+	bool
+}
+
 
 func main() {
 	stud1 := Student{
@@ -72,4 +79,10 @@ func main() {
 	PrintStudent(*studPointer)
 	studPointerNew := new(Student)
 	fmt.Println(studPointerNew)
+	human := &Human{
+		firstName: "John Doe",
+		string: "Addition info",
+		bool: true,
+	}
+	fmt.Println(human.string)
 }
