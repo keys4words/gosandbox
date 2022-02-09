@@ -6,6 +6,14 @@ type Rectangle struct {
 	length, width int
 }
 
+type Circle struct {
+	radius float64
+}
+
+func NewCircle(newRadius float64) *Circle {
+	return &Circle(newRadius)
+}
+
 func New(newLength, newWidth int) *Rectangle {
 	return &Rectangle{newLength, newWidth}
 }
