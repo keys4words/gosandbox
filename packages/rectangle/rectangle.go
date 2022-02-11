@@ -1,5 +1,11 @@
 package rectangle
 
+import "fmt"
+
+func init() {
+	fmt.Println("Init function from rectangle package")
+}
+
 type Rectangle struct {
 	A,B int
 	color string
