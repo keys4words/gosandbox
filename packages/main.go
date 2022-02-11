@@ -7,7 +7,13 @@ import (
 
 func init() {
 	fmt.Println("Init function for main package")
+	fmt.Println("Name:", name, ", Age:", age)
 }
+
+var (
+	name string = "Max"
+	age int = 99
+)
 
 func main() {
 	// resAdd := Add(10, 20)

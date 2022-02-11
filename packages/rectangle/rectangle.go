@@ -2,8 +2,14 @@ package rectangle
 
 import "fmt"
 
+var (
+	name string = "John"	
+	age int = 34
+)
+
 func init() {
 	fmt.Println("Init function from rectangle package")
+	fmt.Println("Name:", name, "Age:", age)
 }
 
 type Rectangle struct {
