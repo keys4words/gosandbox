@@ -19,3 +19,9 @@ func TestSub(t *testing.T) {
 		t.Errorf("Sub(30,20) fail. Expected %d, get %d\n", 10, res)
 	}
 }
+
+func TestMult(t *testing.T) {
+	if res := Mult(50, 4); res != 200 {
+		t.Errorf("Mult(50, 4) fail. Expected %d, get %d\n", 200, res)
+	}
+}
