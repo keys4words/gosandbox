@@ -15,6 +15,10 @@ func OuterFunc() int {
 }
 
 func main() {
+	defer fmt.Println("Step 1 defer")
+	defer fmt.Println("Step 2 defer")
+	defer fmt.Println("Step 3 defer")
+	defer fmt.Println("Step 4 defer")
 	var numIP = 10
 	p := &numIP
 	// defer CheckDBCloseConnection(numIP)
