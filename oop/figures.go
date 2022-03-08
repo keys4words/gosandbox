@@ -18,6 +18,11 @@ type Rectangle struct {
 	Length, Width int
 }
 
+type RoundRectangle struct {
+	Circle
+	Rectangle
+}
+
 func (c Circle) Perimeter() float64 {
 	return 2 * math.Pi * float64(c.Radius)
 }
@@ -38,6 +43,18 @@ func NewCircle(radius int) *Circle {
 	return &Circle{Radius: radius}
 }
 
+func NewRoundRectangle(length, width, radius int) *RoundRectangle {
+	return &RoundRectangle{Circle{radius}, Rectangle{length, width}}
+}
+
+func (rr RoundRectangle) Info() string {
+	return fmt.Sprintf("round rectangle with length:%d & width: %d with radius: %d", rr.Length, rr.Width, rr.Radius)
+}
+
+func (rr RoundRectangle) Perimeter() float64 {
+	return 2*float64(rr.Length+rr.Width) - float64(4*rr.Radius) + 2*math.Pi*float64(rr.Radius)
+}
+
 func main() {
 	c := Circle{10}
 	// fmt.Println(c.Info())
@@ -50,6 +67,7 @@ func main() {
 		c, r,
 		NewCircle(30),
 		Rectangle{3, 3},
+		NewRoundRectangle(20, 10, 4),
 	}
 	for _, el := range figures {
 		fmt.Println(el.Info())
