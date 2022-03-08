@@ -5,31 +5,53 @@ import (
 	"math"
 )
 
+type Figure interface {
+	Perimeter() float64
+	Info() string
+}
+
 type Circle struct {
-	radius float64
+	Radius int
 }
 
 type Rectangle struct {
-	length, width int
-}
-
-func Perimeter(c Circle) float64 {
-	return 2 * math.Pi * c.radius
+	Length, Width int
 }
 
 func (c Circle) Perimeter() float64 {
-	return 2 * math.Pi * c.radius
+	return 2 * math.Pi * float64(c.Radius)
 }
 
-func (r Rectangle) Perimeter() int {
-	return 2 * (r.length + r.width)
+func (c Circle) Info() string {
+	return fmt.Sprintf("circle with radius %d", c.Radius)
 }
 
+func (r Rectangle) Perimeter() float64 {
+	return 2 * float64(r.Length+r.Width)
+}
+
+func (r Rectangle) Info() string {
+	return fmt.Sprintf("rectangle with length:%d and width:%d", r.Length, r.Width)
+}
+
+func NewCircle(radius int) *Circle {
+	return &Circle{Radius: radius}
+}
 
 func main() {
-	c := Circle{10.5}
-	fmt.Println(c.Perimeter())
-	fmt.Println(Perimeter(c))
+	c := Circle{10}
+	// fmt.Println(c.Info())
+	// fmt.Printf("Perimeter of c: %.2f\n", c.Perimeter())
+	// fmt.Println(Perimeter(c))
 	r := Rectangle{10, 20}
-	fmt.Println("Rectangle: ", r.Perimeter())
+	// fmt.Println(r.Info())
+	// fmt.Printf("Perimeter of r: %.2f\n", r.Perimeter())
+	figures := []Figure{
+		c, r,
+		NewCircle(30),
+		Rectangle{3, 3},
+	}
+	for _, el := range figures {
+		fmt.Println(el.Info())
+	}
 }

@@ -1,14 +1,17 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"unicode/utf8"
+)
 
 func main() {
-	// word := "Тестовая строка"
-	// fmt.Printf("String %s\n", word)
-	// fmt.Printf("Bytes: ")
-	// for i := 0; i<len(word); i++ {
-	// 	fmt.Printf("%x ", word[i])
-	// }
+	word := "Тестовая строка"
+	fmt.Printf("String %s, len:%d, Rune len:%d\n", word, len(word), utf8.RuneCountInString(word))
+	fmt.Printf("Bytes: ")
+	for i := 0; i < len(word); i++ {
+		fmt.Printf("%x ", word[i])
+	}
 	// fmt.Println()
 	// for i := 0; i<len(word); i++ {
 	// 	fmt.Printf("%c ", word[i])
