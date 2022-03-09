@@ -15,8 +15,8 @@ func main() {
 			continue
 		} else {
 			fmt.Println("Password accepted")
-			break
+			return
 		}
-		
+
 	}
 }
