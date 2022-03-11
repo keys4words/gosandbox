@@ -10,22 +10,23 @@ import (
 func main() {
 	word := "Тестовая строка"
 	fmt.Printf("String %s, len:%d, Rune len:%d\n", word, len(word), utf8.RuneCountInString(word))
-	fmt.Printf("Bytes: ")
-	for i := 0; i < len(word); i++ {
-		fmt.Printf("%x ", word[i])
-	}
-	// fmt.Println()
-	// for i := 0; i<len(word); i++ {
-	// 	fmt.Printf("%c ", word[i])
+	// fmt.Printf("Bytes: ")
+	// for i := 0; i < len(word); i++ {
+	// 	fmt.Printf("%x ", word[i])
 	// }
 	// fmt.Println()
-	// fmt.Println(strings.Contains("ABDCDSF", "AB"))
-	fmt.Println()
-	fmt.Println("compare ->", strings.Compare("abce", "abce"))
-	runeSlice := []rune(word)
-	for i := 0; i < len(runeSlice); i++ {
-		fmt.Printf("%c ", runeSlice[i])
+	wordSliceToRune := []rune(word)
+	for i := 0; i < len(wordSliceToRune); i++ {
+		fmt.Printf("%c ", wordSliceToRune[i])
 	}
+	fmt.Println()
+	// fmt.Println(strings.Contains("ABDCDSF", "AB"))
+	// fmt.Println()
+	fmt.Println("compare ->", strings.Compare("abce", "abce"))
+	// runeSlice := []rune(word)
+	// for i := 0; i < len(runeSlice); i++ {
+	// 	fmt.Printf("%c ", runeSlice[i])
+	// }
 	// fmt.Println()
 	// myByteSlice := []byte{0x40, 0x41, 0x42}
 	// myStr := string(myByteSlice)
