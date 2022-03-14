@@ -2,17 +2,16 @@ package main
 
 import "fmt"
 
-
 //1. Структура - заименованный набор полей (свойств - состояний), опредляющий новый тип данных
 type Student struct {
 	firstName string
-	lastName string
-	age int
+	lastName  string
+	age       int
 }
 
 type AnotherStudent struct {
 	firstName, lastName, groupName string
-	age, courceNumber int
+	age, courceNumber              int
 }
 
 func PrintStudent(std Student) {
@@ -29,12 +28,11 @@ type Human struct {
 	bool
 }
 
-
 func main() {
 	stud1 := Student{
 		firstName: "Ivan",
-		lastName: "Petrov",
-		age: 21,
+		lastName:  "Petrov",
+		age:       21,
 	}
 	fmt.Println(stud1)
 	PrintStudent(stud1)
@@ -45,12 +43,12 @@ func main() {
 
 	//Anonymous struct
 	anonStudent := struct {
-		age int
-		groupID int
+		age           int
+		groupID       int
 		professorName string
 	}{
-		age: 23,
-		groupID: 1,
+		age:           23,
+		groupID:       1,
 		professorName: "Alexeev",
 	}
 	fmt.Println("Anonymous struct: ", anonStudent)
@@ -68,21 +66,22 @@ func main() {
 	PrintStudent(emptyStud2)
 
 	// pointer to struct instance
-	studPointer := &Student {
+	studPointer := &Student{
 		firstName: "Mike",
-		lastName: "Tyson",
-		age: 47,
+		lastName:  "Tyson",
+		age:       47,
 	}
 	fmt.Println("Value studPointer: ", studPointer)
 	secondPointer := studPointer
 	(*secondPointer).age -= 25
 	PrintStudent(*studPointer)
 	studPointerNew := new(Student)
-	fmt.Println(studPointerNew)
+	fmt.Println("studPointer", studPointerNew)
 	human := &Human{
 		firstName: "John Doe",
-		string: "Addition info",
-		bool: true,
+		string:    "Addition info",
+		bool:      true,
 	}
-	fmt.Println(human.string)
+	fmt.Println("anon field string ->", human.string)
+	// fmt.Println(human)
 }
