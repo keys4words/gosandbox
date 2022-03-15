@@ -7,11 +7,11 @@ type Rectangle struct {
 }
 
 func (r Rectangle) Perimeter() int {
-	return 2*(r.length+r.width)
+	return 2 * (r.length + r.width)
 }
 
 func Perimeter(r Rectangle) int {
-	return 2*(r.length+r.width)
+	return 2 * (r.length + r.width)
 }
 
 func (r Rectangle) SetLength(newLength int) {
@@ -25,7 +25,7 @@ func main() {
 
 	rectAsPointer := &rectangleAsValue
 	fmt.Println("Call method for rectAsPointer:", rectAsPointer.Perimeter())
-	// fmt.Println("Call function for rectAsPointer:", Perimeter(rectAsPointer))
+	//fmt.Println("Call function for rectAsPointer:", Perimeter(rectAsPointer))
 
 	fmt.Println("Before call method SetLength: ", rectangleAsValue)
 	rectangleAsValue.SetLength(9999)
