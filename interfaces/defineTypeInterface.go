@@ -2,17 +2,17 @@ package main
 
 import "fmt"
 
-type Describer interface{
+type Describer interface {
 	Describe()
 }
 
 type Student struct {
 	name string
-	age int
+	age  int
 }
 
 func (std Student) Describe() {
-	fmt.Printf("%s and %d\n", std.name, std.age)
+	fmt.Printf("Student %s and %d\n", std.name, std.age)
 }
 
 func DoSomething(pretedent interface{}) {
@@ -32,7 +32,7 @@ func DoSomething(pretedent interface{}) {
 func main() {
 	DoSomething(10)
 	DoSomething("another string")
-	DoSomething(func(a, b int) int {return a+b})
+	DoSomething(func(a, b int) int { return a + b })
 	std := Student{"Alex", 22}
 	DoSomething(std)
 }

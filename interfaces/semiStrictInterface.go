@@ -8,7 +8,7 @@ type Worker interface {
 
 type Employee struct {
 	name string
-	age int
+	age  int
 }
 
 func (e Employee) Work() {
@@ -20,7 +20,7 @@ func Describer(w Worker) {
 }
 
 type Student struct {
-	name string
+	name         string
 	courseNumber int
 }
 
