@@ -8,7 +8,7 @@ type Describer interface {
 
 type Student struct {
 	name string
-	age int
+	age  int
 }
 
 func (std Student) Describe() {
@@ -17,20 +17,19 @@ func (std Student) Describe() {
 
 type Professor struct {
 	name string
-	age int
+	age  int
 }
 
 func (prof *Professor) Describe() {
 	fmt.Printf("Professor name: %s and age: %d\n", prof.name, prof.age)
 }
 
-
 func main() {
 	var desc Describer
 	std1 := Student{"John", 21}
 	desc = std1
 	desc.Describe()
-	std2 := Student{"Bob", 22}
+	std2 := &Student{"Bob", 22}
 	desc = std2
 	desc.Describe()
 
@@ -38,4 +37,6 @@ func main() {
 	prof1 := &Professor{"Niels Bohr", 89}
 	desc2 = prof1
 	desc2.Describe()
+	// prof2 := Professor{"Albert Einstein", 99}
+	// desc2 = prof2
 }

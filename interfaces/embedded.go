@@ -11,23 +11,22 @@ type AreaCalc interface {
 }
 
 type Rectangle struct {
-	a, b int
+	a, b  int
 	color string
 }
 
 func (r Rectangle) Perimeter() int {
-	return 2*(r.a+r.b)
+	return 2 * (r.a + r.b)
 }
 
 func (r Rectangle) Area() int {
-	return r.a*r.b
+	return r.a * r.b
 }
 
 type FigureFeatureCalc interface {
 	PerimeterCalc
 	AreaCalc
 }
-
 
 func main() {
 	var pCalc PerimeterCalc
@@ -40,6 +39,6 @@ func main() {
 
 	var ffCalc FigureFeatureCalc
 	ffCalc = rect
-	fmt.Println(ffCalc.Area())
-	fmt.Println(ffCalc.Perimeter())
+	fmt.Println("FigureFeatureCalc", ffCalc.Area())
+	fmt.Println("FigureFeatureCalc", ffCalc.Perimeter())
 }
