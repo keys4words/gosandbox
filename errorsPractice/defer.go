@@ -6,6 +6,7 @@ func CheckDBCloseConnection(a int) {
 	fmt.Println("Check started... Value numIP in defer:", a)
 	fmt.Println("Check done! Connection refused!")
 }
+
 func OuterFunc() int {
 	defer fmt.Println("I'm deferred print function!")
 	fmt.Println("OuterFunc started")
