@@ -12,7 +12,7 @@ func init() {
 
 var (
 	name string = "Max"
-	age int = 99
+	age  int    = 99
 )
 
 func main() {
