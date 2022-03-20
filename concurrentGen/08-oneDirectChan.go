@@ -6,5 +6,5 @@ func sender(sendChan chan<- int) {
 func main() {
 	sendChan := make(chan<- int)
 	go sender(sendChan)
-	// <-sendChan
+	<-sendChan
 }

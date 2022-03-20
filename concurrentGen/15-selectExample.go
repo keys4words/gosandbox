@@ -5,13 +5,14 @@ import (
 	"time"
 )
 
-func process(ch chan string) {
+func heavyProcess(ch chan string) {
 	time.Sleep(10500 * time.Millisecond)
 	ch <- "process successful"
 }
+
 func main() {
 	ch := make(chan string)
-	go process(ch)
+	go heavyProcess(ch)
 	for {
 		time.Sleep(1000 * time.Millisecond)
 		select {
