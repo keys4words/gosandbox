@@ -73,7 +73,7 @@ func main() {
 		log.Fatal(err)
 	}
 	fmt.Println(string(byteArr))
-	err = os.WriteFile("professors.json", byteArr, 0644)
+	err = ioutil.WriteFile("professors.json", byteArr, 0644)
 	if err != nil {
 		log.Fatal(err)
 	}
