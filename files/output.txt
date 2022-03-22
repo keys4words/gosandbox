@@ -1,1 +1,3 @@
-hey, dude!
+some
+new line
+buffered string
