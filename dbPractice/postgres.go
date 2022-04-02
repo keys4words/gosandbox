@@ -1,4 +1,4 @@
-package postgres
+package main
 
 import (
 	"context"
@@ -14,7 +14,7 @@ import (
 
 func PostgresSimpleQuery() {
 	// urlExample := "postgres://username:password@localhost:5432/database_name"
-	conn, err := pgx.Connect(context.Background(), "postgres://postgres:example@localhost:5432/postgres")
+	conn, err := pgx.Connect(context.Background(), "postgres://admin:admin@localhost:5432/mydb")
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Unable to connect to database: %v\n", err)
 		os.Exit(1)
@@ -22,35 +22,39 @@ func PostgresSimpleQuery() {
 	defer conn.Close(context.Background())
 
 	var name string
-	var position string
+	var address string
+	var salary int
+	var age int
 	var id int64
-	err = conn.QueryRow(context.Background(), "select * from users where id=$1", 2).Scan(&id, &name, &position) //сырой интерфейс записывает значения в списки полей, возможности смаппить каждое поле нет
+	err = conn.QueryRow(context.Background(), "select * from company where id=$1", 2).Scan(&id, &name, &age, &address, &salary) //сырой интерфейс записывает значения в списки полей, возможности смаппить каждое поле нет
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "QueryRow failed: %v\n", err)
 		os.Exit(1)
 	}
 
-	fmt.Println(name, position)
+	fmt.Println(name, age, address, salary)
 }
 
 func PostgresScanToObject() {
 	ctx := context.Background()
-	db, _ := pgxpool.Connect(ctx, "postgres://postgres:example@localhost:5432/postgres")
+	db, _ := pgxpool.Connect(ctx, "postgres://admin:admin@localhost:5432/mydb")
 
 	type User struct {
-		Name string
-		Rank string
-		Id   int
+		Name    string
+		Age     int
+		Address string
+		Salary  int
+		Id      int
 	}
 
 	defer db.Close()
 
 	var users []User
-	pgxscan.Select(ctx, db, &users, "select * from users") //библиотечка хелпер, которая маппит поля за вас, Select маппит списки, когда в запросе больше одного элемента
+	pgxscan.Select(ctx, db, &users, "select * from company") //библиотечка хелпер, которая маппит поля за вас, Select маппит списки, когда в запросе больше одного элемента
 	fmt.Println(users)
 
 	var user User
-	pgxscan.Get(ctx, db, &user, "select * from users where id=$1", 2) //Get берет одно значение и маппит в конкретный обьект
+	pgxscan.Get(ctx, db, &user, "select * from company where id=$1", 2) //Get берет одно значение и маппит в конкретный обьект
 	fmt.Println(user)
 }
 
@@ -85,4 +89,9 @@ func PostgresAddCar(userId int, colour string, brand string, licensePlate string
 	defer conn.Close(ctx)
 	_, err = conn.Exec(ctx, "INSERT INTO cars(user_id, colour, brand, license_plate) VALUES ($1,$2,$3,$4)", userId, colour, brand, licensePlate) // для записи в базу нам надо смаппить конкретные поля в значения
 	fmt.Println(err)
+}
+
+func main() {
+	// PostgresSimpleQuery()
+	PostgresScanToObject()
 }
