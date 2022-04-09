@@ -6,9 +6,9 @@ services:
     image: postgres:13.3
     restart: always
     environment:
-      POSTGRES_DB: "mydb"
-      POSTGRES_USER: "admin"
-      POSTGRES_PASSWORD: "admin"
+      POSTGRES_DB: "postgres"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "example"
     volumes:
       - ./initdb:/docker-entrypoint-initdb.d
     ports:
