@@ -22,7 +22,7 @@ type AppServer struct {
 	db     *pgxpool.Pool
 }
 
-func NewServer(config cfg.Cfg, ctx context.Context) *AppServer { //задаем поля нашего сервера, для его старта нам нужен контекст и конфигурация
+func NewServer(config cfg.Cfg, ctx context.Context) *AppServer {
 	server := new(AppServer)
 	server.ctx = ctx
 	server.config = config
@@ -33,31 +33,31 @@ func (server *AppServer) Serve() {
 	log.Println("Starting server")
 	log.Println(server.config.GetDBString())
 	var err error
-	server.db, err = pgxpool.Connect(server.ctx, server.config.GetDBString()) //создаем пул соединений с БД и сохраним его для закрытия при остановке приложения
+	server.db, err = pgxpool.Connect(server.ctx, server.config.GetDBString())
 	if err != nil {
 		log.Fatalln(err)
 	}
 
-	carsStorage := db3.NewCarStorage(server.db)    //создаем экземпляр storage для работы с бд и всем что связано с машинами
-	usersStorage := db3.NewUsersStorage(server.db) //создаем экземпляр storage для работы с бд и всем что связано с пользователями
+	carsStorage := db3.NewCarStorage(server.db)
+	usersStorage := db3.NewUsersStorage(server.db)
 
-	carsProcessor := processors.NewCarsProcessor(carsStorage) //инициализируем процессоры соотвествующими storage
+	carsProcessor := processors.NewCarsProcessor(carsStorage)
 	usersProcessor := processors.NewUsersProcessor(usersStorage)
 
-	userHandler := handlers.NewUsersHandler(usersProcessor) //инициализируем handlerы нашими процессорами
+	userHandler := handlers.NewUsersHandler(usersProcessor)
 	carsHandler := handlers.NewCarsHandler(carsProcessor)
 
-	routes := api.CreateRoutes(userHandler, carsHandler) //хендлеры напрямую используются в путях
-	routes.Use(middleware.RequestLog)                    //middleware используем здесь, хотя можно было бы и в CreateRoutes
+	routes := api.CreateRoutes(userHandler, carsHandler)
+	routes.Use(middleware.RequestLog)
 
-	server.srv = &http.Server{ //в отличие от примеров http, здесь мы передаем наш server в поле структуры, для работы в Shutdown
+	server.srv = &http.Server{
 		Addr:    ":" + server.config.Port,
 		Handler: routes,
 	}
 
 	log.Println("Server started")
 
-	err = server.srv.ListenAndServe() //запускаем сервер
+	err = server.srv.ListenAndServe()
 
 	if err != nil && err != http.ErrServerClosed {
 		log.Fatalln(err)
@@ -70,12 +70,12 @@ func (server *AppServer) Shutdown() {
 	log.Printf("server stopped")
 
 	ctxShutDown, cancel := context.WithTimeout(context.Background(), 5*time.Second)
-	server.db.Close() //закрываем соединение с БД
+	server.db.Close()
 	defer func() {
 		cancel()
 	}()
 	var err error
-	if err = server.srv.Shutdown(ctxShutDown); err != nil { //выключаем сервер, с ограниченным по времени контекстом
+	if err = server.srv.Shutdown(ctxShutDown); err != nil {
 		log.Fatalf("server Shutdown Failed:%s", err)
 	}
 

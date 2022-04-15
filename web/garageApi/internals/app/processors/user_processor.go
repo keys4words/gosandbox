@@ -1,9 +1,9 @@
 package processors
 
 import (
-	"6_7/example/internals/app/db"
-	"6_7/example/internals/app/models"
 	"errors"
+	"web/garageApi/internals/app/db"
+	"web/garageApi/internals/app/models"
 )
 
 type UsersProcessor struct {
@@ -38,4 +38,3 @@ func (processor *UsersProcessor) FindUser(id int64) (models.User, error) {
 func (processor *UsersProcessor) ListUsers(nameFilter string) ([]models.User, error) {
 	return processor.storage.GetUsersList(nameFilter), nil
 }
-

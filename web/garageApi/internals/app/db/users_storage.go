@@ -1,9 +1,10 @@
 package db
 
 import (
-	"6_7/example/internals/app/models"
 	"context"
 	"fmt"
+	"web/garageApi/internals/app/models"
+
 	"github.com/georgysavva/scany/pgxscan"
 	"github.com/jackc/pgx/v4/pgxpool"
 	log "github.com/sirupsen/logrus"
@@ -22,10 +23,10 @@ func NewUsersStorage(pool *pgxpool.Pool) *UsersStorage {
 
 func (storage *UsersStorage) GetUsersList(nameFilter string) []models.User {
 	query := "SELECT id, name, rank FROM users"
-	args := make([]interface{},0)
+	args := make([]interface{}, 0)
 	if nameFilter != "" {
 		query += " WHERE name LIKE $1"
-		args = append(args,fmt.Sprintf("%%%s%%", nameFilter))
+		args = append(args, fmt.Sprintf("%%%s%%", nameFilter))
 	}
 
 	var result []models.User
@@ -56,12 +57,12 @@ func (storage *UsersStorage) GetUserById(id int64) models.User {
 func (storage *UsersStorage) CreateUser(user models.User) error {
 	query := "INSERT INTO users(name, rank) VALUES ($1, $2)"
 
-	_, err := storage.databasePool.Exec(context.Background(),query, user.Name, user.Rank) //транзакция не нужна, у нас только один запрос
+	_, err := storage.databasePool.Exec(context.Background(), query, user.Name, user.Rank) //транзакция не нужна, у нас только один запрос
 
 	if err != nil {
 		log.Errorln(err)
 		return err
 	}
-	
+
 	return nil
 }

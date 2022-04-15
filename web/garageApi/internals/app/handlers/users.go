@@ -1,14 +1,15 @@
 package handlers
 
 import (
-	"6_7/example/internals/app/models"
-	"6_7/example/internals/app/processors"
 	"encoding/json"
 	"errors"
-	"github.com/gorilla/mux"
 	"net/http"
 	"strconv"
 	"strings"
+	"web/garageApi/internals/app/models"
+	"web/garageApi/internals/app/processors"
+
+	"github.com/gorilla/mux"
 )
 
 type UsersHandler struct {
@@ -36,9 +37,9 @@ func (handler *UsersHandler) Create(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	var m = map[string]interface{} {
-		"result" : "OK",
-		"data" : "",
+	var m = map[string]interface{}{
+		"result": "OK",
+		"data":   "",
 	}
 
 	WrapOK(w, m)
@@ -52,16 +53,16 @@ func (handler *UsersHandler) List(w http.ResponseWriter, r *http.Request) {
 		WrapError(w, err)
 	}
 
-	var m = map[string]interface{} {
-		"result" : "OK",
-		"data" : list,
+	var m = map[string]interface{}{
+		"result": "OK",
+		"data":   list,
 	}
 
 	WrapOK(w, m)
 }
 
 func (handler *UsersHandler) Find(w http.ResponseWriter, r *http.Request) {
-	vars := mux.Vars(r) //переменные, обьявленные в ресурсах попадают в Vars и могут быть адресованы
+	vars := mux.Vars(r)
 	if vars["id"] == "" {
 		WrapError(w, errors.New("missing id"))
 		return
@@ -79,9 +80,9 @@ func (handler *UsersHandler) Find(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	var m = map[string]interface{} {
-		"result" : "OK",
-		"data" : user,
+	var m = map[string]interface{}{
+		"result": "OK",
+		"data":   user,
 	}
 
 	WrapOK(w, m)
