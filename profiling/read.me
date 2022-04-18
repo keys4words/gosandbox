@@ -1,0 +1,11 @@
+# run profiling
+time go run prof.go
+
+# run pprof env
+go tool pprof cpu.pprof
+- help
+- top - show power nodes
+- list main.fib - show func info
+
+# run pprof web gui
+go tool pprof -http=:8080 cpu.pprof
