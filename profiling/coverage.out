@@ -1,0 +1,9 @@
+mode: set
+profiling/prof.go:10.23,11.12 1 1
+profiling/prof.go:11.12,13.3 1 1
+profiling/prof.go:13.8,13.19 1 1
+profiling/prof.go:13.19,15.3 1 1
+profiling/prof.go:15.8,17.3 1 1
+profiling/prof.go:20.13,22.16 2 0
+profiling/prof.go:25.2,31.16 5 0
+profiling/prof.go:22.16,24.3 1 0

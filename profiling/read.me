@@ -9,3 +9,15 @@ go tool pprof cpu.pprof
 
 # run pprof web gui
 go tool pprof -http=:8080 cpu.pprof
+
+# tests
+go test -v
+
+# test coverage
+go test -cover
+go test -coverprofile=coverage.out
+go tool cover -html=coverage.out -o coverage.html
+
+# test 4 DB
+use mocks - look repo
+go test repo/*
