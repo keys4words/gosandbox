@@ -21,3 +21,7 @@ go tool cover -html=coverage.out -o coverage.html
 # test 4 DB
 use mocks - look repo
 go test repo/*
+
+# tests 4 Repo
+use github.com/golang/mock/gomock lib
+go test service/*
