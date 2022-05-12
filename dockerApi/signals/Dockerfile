@@ -11,5 +11,5 @@ RUN go build -o /server
 FROM gcr.io/distroless/base-debian10
 WORKDIR /
 COPY --from=build /server /server
-EXPOSE 8080
+# EXPOSE 8080
 ENTRYPOINT ["/server"]
